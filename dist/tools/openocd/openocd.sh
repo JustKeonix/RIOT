@@ -76,6 +76,7 @@
 # @author       Hauke Peteresen <hauke.petersen@fu-berlin.de>
 # @author       Joakim Nohlgård <joakim.nohlgard@eistec.se>
 
+: ${GDB_SERVER:=localhost}
 # Default GDB port, set to 0 to disable, required != 0 for debug and debug-server targets
 : ${GDB_PORT:=3333}
 # Default GDB port core offset
@@ -99,7 +100,7 @@
 # Debugger client command, can be used to wrap GDB in a front-end
 : ${DBG:=${GDB}}
 # Default debugger flags,
-: ${DBG_DEFAULT_FLAGS:=-q -ex \"tar ext :$(( GDB_PORT + GDB_PORT_CORE_OFFSET ))\"}
+: ${DBG_DEFAULT_FLAGS:=-q -ex \"tar ext ${GDB_SERVER}:$(( GDB_PORT + GDB_PORT_CORE_OFFSET ))\"}
 # Extra debugger flags, added by the user
 : ${DBG_EXTRA_FLAGS:=}
 # Debugger flags, will be passed to sh -c, remember to escape any quotation signs.
@@ -400,6 +401,7 @@ do_debug() {
             ${OPENOCD_ADAPTER_INIT} \
             -f '${OPENOCD_CONFIG}' \
             ${OPENOCD_EXTRA_INIT} \
+            -c 'bindto 0.0.0.0' \
             -c 'tcl_port ${TCL_PORT}' \
             -c 'telnet_port ${TELNET_PORT}' \
             -c 'gdb_port ${GDB_PORT}' \
@@ -428,6 +430,7 @@ do_debugserver() {
             ${OPENOCD_ADAPTER_INIT} \
             -f '${OPENOCD_CONFIG}' \
             ${OPENOCD_EXTRA_INIT} \
+            -c 'bindto 0.0.0.0' \
             -c 'tcl_port ${TCL_PORT}' \
             -c 'telnet_port ${TELNET_PORT}' \
             -c 'gdb_port ${GDB_PORT}' \
