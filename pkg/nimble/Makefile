@@ -74,6 +74,9 @@ nimble_controller:
 nimble_drivers_nrf5x:
 	$(QQ)"$(MAKE)" -C $(PDIR)/nimble/drivers/$(CPU_FAM)/src/ -f $(RIOTBASE)/Makefile.base MODULE=$@
 
+nimble_drivers_fpga:
+	$(QQ)"$(MAKE)" -C $(RIOTBASE)/examples/nimble_heart_rate_sensor_fpga/nimble_driver/src/ -f $(RIOTBASE)/Makefile.base MODULE=$@
+
 # additional, RIOT specific nimble modules
 nimble_addr:
 	$(QQ)"$(MAKE)" -C $(TDIR)/addr/

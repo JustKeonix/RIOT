@@ -35,7 +35,7 @@ extern "C" {
  * This should be as high as possible.
  */
 #ifndef NIMBLE_CONTROLLER_PRIO
-#define NIMBLE_CONTROLLER_PRIO      (0)
+#define NIMBLE_CONTROLLER_PRIO      (1) // we will use 0 for pseudo-isr
 #endif
 
 /**

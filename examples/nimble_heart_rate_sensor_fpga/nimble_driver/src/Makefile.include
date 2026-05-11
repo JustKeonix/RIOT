@@ -26,10 +26,6 @@ ifneq (,$(filter nimble_controller,$(USEMODULE)))
   ifneq (,$(filter nimble_drivers_nrf5x,$(USEMODULE)))
     INCLUDES += $(NIMIBASE)/nimble/drivers/$(CPU_FAM)/include
   endif
-  ifneq (,$(filter nimble_drivers_fpga,$(USEMODULE)))
-    # A hack for some time?
-    INCLUDES += -I$(RIOTBASE)/examples/nimble_heart_rate_sensor_fpga/nimble_driver/include
-  endif
 
   # Enable additional PHY modes if requested by the build
   ifneq (,$(filter ble_phy_2mbit,$(FEATURES_USED)))

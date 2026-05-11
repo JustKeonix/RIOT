@@ -55,6 +55,8 @@ endif
 ifneq (,$(filter nimble_controller,$(USEMODULE)))
   ifneq (,$(filter nrf5%,$(CPU_FAM)))
     USEMODULE += nimble_drivers_nrf5x
+  else
+    USEMODULE += nimble_drivers_fpga
   endif
 endif
 
