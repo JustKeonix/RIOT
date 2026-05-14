@@ -35,6 +35,11 @@ int main(void)
     debounce_timer.callback = debounce_cb;
     debounce_timer.arg = NULL;
 
+    // BUTTON_PIN    PA0
+    // GPIO_IN_PD    input with pull-down resistor
+    // GPIO_BOTH     interrupt on both rising and falling edges
+    // button_cb     function to call when interrupt happens
+    // NULL          no extra callback argument
     if (gpio_init_int(BUTTON_PIN, GPIO_IN_PD, GPIO_BOTH, button_cb, NULL) < 0) {
         puts("gpio_init_int failed");
         return 1;
